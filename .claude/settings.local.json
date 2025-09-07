@@ -1,17 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bash .claude/scripts/test-and-log.sh:*)",
-      "Bash(.claude/scripts/test-and-log.sh:*)",
-      "Bash(bash .claude/scripts/pm/*)",
-      "Bash(.claude/scripts/pm/*)",
-
+      "Bash(bash .opencode/scripts/test-and-log.sh:*)",
+      "Bash(.opencode/scripts/test-and-log.sh:*)",
+      "Bash(bash .opencode/scripts/pm/*)",
+      "Bash(.opencode/scripts/pm/*)",
       "Bash(cat *)",
       "Bash(cat:*)",
       "Bash(composer *)",
       "Bash(fi)",
       "Bash(find *)",
-      "Bash(gh *)",
+      "Bash(glab *)",
       "Bash(git *)",
       "Bash(grep *)",
       "Bash(kill:*)",
@@ -32,7 +31,7 @@
       "Bash(touch *)",
       "Bash(tree *)",
       "List(**)",
-      "WebFetch(domain:github.com)",
+      "WebFetch(domain:gitlab.com)",
       "WebSearch"
     ]
   }

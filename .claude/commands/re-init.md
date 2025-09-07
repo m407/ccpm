@@ -2,8 +2,8 @@
 allowed-tools: Bash, Read, Write, LS
 ---
 
-# Enhance CLAUDE.md file
+# Enhance AGENTS.md file
 
-Please update CLAUDE.md with the rules from .claude/CLAUDE.md.
+Please update AGENTS.md with the rules from .opencode/AGENTS.md.
 
-If CLAUDE.md does not exist, create it using the /init and include rules from .claude/CLAUDE.md.
+If AGENTS.md does not exist, create it using the /init and include rules from .opencode/AGENTS.md.

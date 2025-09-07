@@ -14,7 +14,7 @@ Break epic into concrete, actionable tasks.
 ## Required Rules
 
 **IMPORTANT:** Before executing this command, read and follow:
-- `.claude/rules/datetime.md` - For getting real current date/time
+- `.opencode/rules/datetime.md` - For getting real current date/time
 
 ## Preflight Checklist
 
@@ -22,19 +22,19 @@ Before proceeding, complete these validation steps.
 Do not bother the user with preflight checks progress ("I'm not going to ..."). Just do them and move on.
 
 1. **Verify epic exists:**
-   - Check if `.claude/epics/$ARGUMENTS/epic.md` exists
+   - Check if `.opencode/epics/$ARGUMENTS/epic.md` exists
    - If not found, tell user: "❌ Epic not found: $ARGUMENTS. First create it with: /pm:prd-parse $ARGUMENTS"
    - Stop execution if epic doesn't exist
 
 2. **Check for existing tasks:**
-   - Check if any numbered task files (001.md, 002.md, etc.) already exist in `.claude/epics/$ARGUMENTS/`
+   - Check if any numbered task files (001.md, 002.md, etc.) already exist in `.opencode/epics/$ARGUMENTS/`
    - If tasks exist, list them and ask: "⚠️ Found {count} existing tasks. Delete and recreate all tasks? (yes/no)"
    - Only proceed with explicit 'yes' confirmation
    - If user says no, suggest: "View existing tasks with: /pm:epic-show $ARGUMENTS"
 
 3. **Validate epic frontmatter:**
    - Verify epic has valid frontmatter with: name, status, created, prd
-   - If invalid, tell user: "❌ Invalid epic frontmatter. Please check: .claude/epics/$ARGUMENTS/epic.md"
+   - If invalid, tell user: "❌ Invalid epic frontmatter. Please check: .opencode/epics/$ARGUMENTS/epic.md"
 
 4. **Check epic status:**
    - If epic status is already "completed", warn user: "⚠️ Epic is marked as completed. Are you sure you want to decompose it again?"
@@ -44,7 +44,7 @@ Do not bother the user with preflight checks progress ("I'm not going to ..."). 
 You are decomposing an epic into specific, actionable tasks for: **$ARGUMENTS**
 
 ### 1. Read the Epic
-- Load the epic from `.claude/epics/$ARGUMENTS/epic.md`
+- Load the epic from `.opencode/epics/$ARGUMENTS/epic.md`
 - Understand the technical approach and requirements
 - Review the task breakdown preview
 
@@ -70,7 +70,7 @@ Task:
     - {list of 3-4 tasks for this batch}
 
     For each task:
-    1. Create file: .claude/epics/$ARGUMENTS/{number}.md
+    1. Create file: .opencode/epics/$ARGUMENTS/{number}.md
     2. Use exact format with frontmatter and all sections
     3. Follow task breakdown from epic
     4. Set parallel/depends_on fields appropriately
@@ -88,7 +88,7 @@ name: [Task Title]
 status: open
 created: [Current ISO date/time]
 updated: [Current ISO date/time]
-github: [Will be updated when synced to GitHub]
+gitlab: [Will be updated when synced to GitLab]
 depends_on: []  # List of task numbers this depends on, e.g., [001, 002]
 parallel: true  # Can this run in parallel with other tasks?
 conflicts_with: []  # Tasks that modify same files, e.g., [003, 004]
@@ -127,7 +127,7 @@ Clear, concise description of what needs to be done
 ```
 
 ### 3. Task Naming Convention
-Save tasks as: `.claude/epics/$ARGUMENTS/{task_number}.md`
+Save tasks as: `.opencode/epics/$ARGUMENTS/{task_number}.md`
 - Use sequential numbering: 001.md, 002.md, etc.
 - Keep task titles short but descriptive
 
@@ -136,7 +136,7 @@ Save tasks as: `.claude/epics/$ARGUMENTS/{task_number}.md`
 - **status**: Always start with "open" for new tasks
 - **created**: Get REAL current datetime by running: `date -u +"%Y-%m-%dT%H:%M:%SZ"`
 - **updated**: Use the same real datetime as created for new tasks
-- **github**: Leave placeholder text - will be updated during sync
+- **gitlab**: Leave placeholder text - will be updated during sync
 - **depends_on**: List task numbers that must complete before this can start (e.g., [001, 002])
 - **parallel**: Set to true if this can run alongside other tasks without conflicts
 - **conflicts_with**: List task numbers that modify the same files (helps coordination)
@@ -218,7 +218,7 @@ After successfully creating tasks:
    - Total tasks created
    - Parallel vs sequential breakdown
    - Total estimated effort
-3. Suggest next step: "Ready to sync to GitHub? Run: /pm:epic-sync $ARGUMENTS"
+3. Suggest next step: "Ready to sync to GitLab? Run: /pm:epic-sync $ARGUMENTS"
 
 ## Error Recovery
 

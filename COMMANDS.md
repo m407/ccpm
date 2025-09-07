@@ -13,12 +13,12 @@ Complete reference of all commands available in the Claude Code PM system.
 
 ## Context Commands
 
-Commands for managing project context in `.claude/context/`.
+Commands for managing project context in `.opencode/context/`.
 
 ### `/context:create`
 - **Purpose**: Create initial project context documentation
 - **Usage**: `/context:create`
-- **Description**: Analyzes the project structure and creates comprehensive baseline documentation in `.claude/context/`. Includes project overview, architecture, dependencies, and patterns.
+- **Description**: Analyzes the project structure and creates comprehensive baseline documentation in `.opencode/context/`. Includes project overview, architecture, dependencies, and patterns.
 - **When to use**: At project start or when context needs full rebuild
 - **Output**: Multiple context files covering different aspects of the project
 
@@ -45,7 +45,7 @@ Commands for test configuration and execution.
 - **Usage**: `/testing:prime`
 - **Description**: Detects and configures the project's testing framework, creates testing configuration, and prepares the test-runner agent.
 - **When to use**: Initial project setup or when testing framework changes
--  **Output**: `.claude/testing-config.md` with test commands and patterns
+-  **Output**: `.opencode/testing-config.md` with test commands and patterns
 
 ### `/testing:run`
 - **Purpose**: Execute tests with intelligent analysis
@@ -69,11 +69,11 @@ General utility and maintenance commands.
 - **Output**: Executes the written prompt
 
 ### `/re-init`
-- **Purpose**: Update or create CLAUDE.md with PM rules
+- **Purpose**: Update or create AGENTS.md with PM rules
 - **Usage**: `/re-init`
-- **Description**: Updates the project's CLAUDE.md file with rules from `.claude/CLAUDE.md`, ensuring Claude instances have proper instructions.
+- **Description**: Updates the project's AGENTS.md file with rules from `.opencode/AGENTS.md`, ensuring Claude instances have proper instructions.
 - **When to use**: After cloning PM system or updating rules
-- **Output**: Updated CLAUDE.md in project root
+- **Output**: Updated AGENTS.md in project root
 
 ## Review Commands
 

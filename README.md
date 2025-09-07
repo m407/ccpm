@@ -129,8 +129,8 @@ No shortcuts. No assumptions. No regrets.
 ## System Architecture
 
 ```
-.claude/
-├── CLAUDE.md          # Always-on instructions (copy content to your project's CLAUDE.md file)
+.opencode/
+├── AGENTS.md          # Always-on instructions (copy content to your project's AGENTS.md file)
 ├── agents/            # Task-oriented agents (for context preservation)
 ├── commands/          # Command definitions
 │   ├── context/       # Create, update, and prime context
@@ -156,7 +156,7 @@ No shortcuts. No assumptions. No regrets.
 ```
 Launches comprehensive brainstorming to create a Product Requirements Document capturing vision, user stories, success criteria, and constraints.
 
-**Output:** `.claude/prds/feature-name.md`
+**Output:** `.opencode/prds/feature-name.md`
 
 ### 2. Implementation Planning Phase
 
@@ -165,7 +165,7 @@ Launches comprehensive brainstorming to create a Product Requirements Document c
 ```
 Transforms PRD into a technical implementation plan with architectural decisions, technical approach, and dependency mapping.
 
-**Output:** `.claude/epics/feature-name/epic.md`
+**Output:** `.opencode/epics/feature-name/epic.md`
 
 ### 3. Task Decomposition Phase
 
@@ -174,7 +174,7 @@ Transforms PRD into a technical implementation plan with architectural decisions
 ```
 Breaks epic into concrete, actionable tasks with acceptance criteria, effort estimates, and parallelization flags.
 
-**Output:** `.claude/epics/feature-name/[task].md`
+**Output:** `.opencode/epics/feature-name/[task].md`
 
 ### 4. GitHub Synchronization
 
@@ -324,7 +324,7 @@ GitHub doesn't need to know HOW the work got done – just that it IS done.
 ## Key Features & Benefits
 
 ### 🧠 **Context Preservation**
-Never lose project state again. Each epic maintains its own context, agents read from `.claude/context/`, and updates locally before syncing.
+Never lose project state again. Each epic maintains its own context, agents read from `.opencode/context/`, and updates locally before syncing.
 
 ### ⚡ **Parallel Execution**
 Ship faster with multiple agents working simultaneously. Tasks marked `parallel: true` enable conflict-free concurrent development.
@@ -397,7 +397,7 @@ Teams using this system report:
    cd path/to/your/project/
    iwr -useb https://raw.githubusercontent.com/automazeio/ccpm/main/ccpm.bat | iex
    ```
-   > ⚠️ **IMPORTANT**: If you already have a `.claude` directory, clone this repository to a different directory and copy the contents of the cloned `.claude` directory to your project's `.claude` directory.
+   > ⚠️ **IMPORTANT**: If you already have a `.opencode` directory, clone this repository to a different directory and copy the contents of the cloned `.opencode` directory to your project's `.opencode` directory.
 
    See full/other installation options in the [installation guide ›](https://github.com/automazeio/ccpm/tree/main/install)
 
@@ -413,11 +413,11 @@ Teams using this system report:
    - Create required directories
    - Update .gitignore
 
-3. **Create `CLAUDE.md`** with your repository information
+3. **Create `AGENTS.md`** with your repository information
    ```bash
-   /init include rules from .claude/CLAUDE.md
+   /init include rules from .opencode/AGENTS.md
    ```
-   > If you already have a `CLAUDE.md` file, run: `/re-init` to update it with important rules from `.claude/CLAUDE.md`.
+   > If you already have a `AGENTS.md` file, run: `/re-init` to update it with important rules from `.opencode/AGENTS.md`.
 
 4. **Prime the system**:
    ```bash

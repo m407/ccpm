@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to run tests with automatic log redirection
-# Usage: ./claude/scripts/test-and-log.sh path/to/test.py [optional_log_name.log]
+# Usage: ./opencode/scripts/test-and-log.sh path/to/test.py [optional_log_name.log]
 
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <test_file_path> [log_filename]"

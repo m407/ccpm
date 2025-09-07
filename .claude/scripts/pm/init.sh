@@ -14,7 +14,7 @@ echo "┌───────────────────────�
 echo "│ Claude Code Project Management  │"
 echo "│ by https://x.com/aroussi        │"
 echo "└─────────────────────────────────┘"
-echo "https://github.com/automazeio/ccpm"
+echo "https://gitlab.com/automazeio/ccpm"
 echo ""
 echo ""
 
@@ -25,60 +25,50 @@ echo ""
 # Check for required tools
 echo "🔍 Checking dependencies..."
 
-# Check gh CLI
-if command -v gh &> /dev/null; then
-  echo "  ✅ GitHub CLI (gh) installed"
+# Check glab CLI
+if command -v glab &> /dev/null; then
+  echo "  ✅ GitLab CLI (glab) installed"
 else
-  echo "  ❌ GitHub CLI (gh) not found"
+  echo "  ❌ GitLab CLI (glab) not found"
   echo ""
-  echo "  Installing gh..."
+  echo "  Please install GitLab CLI (glab): https://gitlab.com/gitlab-org/cli"
   if command -v brew &> /dev/null; then
-    brew install gh
+    brew install glab
   elif command -v apt-get &> /dev/null; then
-    sudo apt-get update && sudo apt-get install gh
+    sudo apt-get update && sudo apt-get install glab
   else
-    echo "  Please install GitHub CLI manually: https://cli.github.com/"
+    echo "  Install instructions: https://gitlab.com/gitlab-org/cli/-/tree/main#installation"
     exit 1
   fi
 fi
 
-# Check gh auth status
+# Check glab auth status
 echo ""
-echo "🔐 Checking GitHub authentication..."
-if gh auth status &> /dev/null; then
-  echo "  ✅ GitHub authenticated"
+echo "🔐 Checking GitLab authentication..."
+if glab auth status &> /dev/null; then
+  echo "  ✅ GitLab authenticated"
 else
-  echo "  ⚠️ GitHub not authenticated"
-  echo "  Running: gh auth login"
-  gh auth login
-fi
-
-# Check for gh-sub-issue extension
-echo ""
-echo "📦 Checking gh extensions..."
-if gh extension list | grep -q "yahsan2/gh-sub-issue"; then
-  echo "  ✅ gh-sub-issue extension installed"
-else
-  echo "  📥 Installing gh-sub-issue extension..."
-  gh extension install yahsan2/gh-sub-issue
+  echo "  ⚠️ GitLab not authenticated"
+  echo "  Running: glab auth login"
+  glab auth login
 fi
 
 # Create directory structure
 echo ""
 echo "📁 Creating directory structure..."
-mkdir -p .claude/prds
-mkdir -p .claude/epics
-mkdir -p .claude/rules
-mkdir -p .claude/agents
-mkdir -p .claude/scripts/pm
+mkdir -p .opencode/prds
+mkdir -p .opencode/epics
+mkdir -p .opencode/rules
+mkdir -p .opencode/agents
+mkdir -p .opencode/scripts/pm
 echo "  ✅ Directories created"
 
 # Copy scripts if in main repo
-if [ -d "scripts/pm" ] && [ ! "$(pwd)" = *"/.claude"* ]; then
+if [ -d "scripts/pm" ] && [ ! "$(pwd)" = *"/.opencode"* ]; then
   echo ""
   echo "📝 Copying PM scripts..."
-  cp -r scripts/pm/* .claude/scripts/pm/
-  chmod +x .claude/scripts/pm/*.sh
+  cp -r scripts/pm/* .opencode/scripts/pm/
+  chmod +x .opencode/scripts/pm/*.sh
   echo "  ✅ Scripts copied and made executable"
 fi
 
@@ -100,9 +90,9 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
       echo "  This means any issues you create will go to the template repo, not your project."
       echo ""
       echo "  To fix this:"
-      echo "  1. Fork the repository or create your own on GitHub"
+      echo "  1. Fork the repository or create your own on GitLab"
       echo "  2. Update your remote:"
-      echo "     git remote set-url origin https://github.com/YOUR_USERNAME/YOUR_REPO.git"
+      echo "     git remote set-url origin https://gitlab.com/YOUR_USERNAME/YOUR_REPO.git"
       echo ""
     fi
   else
@@ -114,12 +104,12 @@ else
   echo "  Initialize with: git init"
 fi
 
-# Create CLAUDE.md if it doesn't exist
-if [ ! -f "CLAUDE.md" ]; then
+# Create AGENTS.md if it doesn't exist
+if [ ! -f "AGENTS.md" ]; then
   echo ""
-  echo "📄 Creating CLAUDE.md..."
-  cat > CLAUDE.md << 'EOF'
-# CLAUDE.md
+  echo "📄 Creating AGENTS.md..."
+  cat > AGENTS.md << 'EOF'
+# AGENTS.md
 
 > Think carefully and implement the most concise solution that changes as little code as possible.
 
@@ -136,7 +126,7 @@ Always run tests before committing:
 
 Follow existing patterns in the codebase.
 EOF
-  echo "  ✅ CLAUDE.md created"
+  echo "  ✅ AGENTS.md created"
 fi
 
 # Summary
@@ -145,9 +135,9 @@ echo "✅ Initialization Complete!"
 echo "=========================="
 echo ""
 echo "📊 System Status:"
-gh --version | head -1
-echo "  Extensions: $(gh extension list | wc -l) installed"
-echo "  Auth: $(gh auth status 2>&1 | grep -o 'Logged in to [^ ]*' || echo 'Not authenticated')"
+glab --version | head -1
+#echo "  Extensions: $(glab extension list | wc -l) installed"
+echo "  Auth: $(glab auth status 2>&1 | grep -o 'Logged in to [^ ]*' || echo 'Not authenticated')"
 echo ""
 echo "🎯 Next Steps:"
 echo "  1. Create your first PRD: /pm:prd-new <feature-name>"

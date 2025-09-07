@@ -13,12 +13,12 @@ Display issue and sub-issues with detailed information.
 
 ## Instructions
 
-You are displaying comprehensive information about a GitHub issue and related sub-issues for: **Issue #$ARGUMENTS**
+You are displaying comprehensive information about a GitLab issue and related sub-issues for: **Issue #$ARGUMENTS**
 
 ### 1. Fetch Issue Data
-- Use `gh issue view #$ARGUMENTS` to get GitHub issue details
-- Look for local task file: first check `.claude/epics/*/$ARGUMENTS.md` (new naming)
-- If not found, search for file with `github:.*issues/$ARGUMENTS` in frontmatter (old naming)
+- Use `glab issue view #$ARGUMENTS` to get GitLab issue details
+- Look for local task file: first check `.opencode/epics/*/$ARGUMENTS.md` (new naming)
+- If not found, search for file with `gitlab:.*issues/$ARGUMENTS` in frontmatter (old naming)
 - Check for related issues and sub-tasks
 
 ### 2. Issue Overview
@@ -39,8 +39,8 @@ Display issue header:
 If local task file exists:
 ```
 📁 Local Files:
-   Task file: .claude/epics/{epic_name}/{task_file}
-   Updates: .claude/epics/{epic_name}/updates/$ARGUMENTS/
+   Task file: .opencode/epics/{epic_name}/{task_file}
+   Updates: .opencode/epics/{epic_name}/updates/$ARGUMENTS/
    Last local update: {timestamp}
 ```
 
@@ -61,7 +61,7 @@ Display recent comments and updates:
    {timestamp} - {author}: {comment_preview}
    {timestamp} - {author}: {comment_preview}
    
-   View full thread: gh issue view #$ARGUMENTS --comments
+   View full thread: glab issue view #$ARGUMENTS --comments
 ```
 
 ### 6. Progress Tracking
@@ -79,8 +79,8 @@ If task file exists, show progress:
 🚀 Quick Actions:
    Start work: /pm:issue-start $ARGUMENTS
    Sync updates: /pm:issue-sync $ARGUMENTS
-   Add comment: gh issue comment #$ARGUMENTS --body "your comment"
-   View in browser: gh issue view #$ARGUMENTS --web
+   Add comment: glab issue comment #$ARGUMENTS --body "your comment"
+   View in browser: glab issue view #$ARGUMENTS --web
 ```
 
 ### 8. Error Handling

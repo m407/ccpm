@@ -4,7 +4,7 @@ allowed-tools: Read, LS
 
 # Epic Oneshot
 
-Decompose epic into tasks and sync to GitHub in one operation.
+Decompose epic into tasks and sync to GitLab in one operation.
 
 ## Usage
 ```
@@ -18,18 +18,18 @@ Decompose epic into tasks and sync to GitHub in one operation.
 Check that epic exists and hasn't been processed:
 ```bash
 # Epic must exist
-test -f .claude/epics/$ARGUMENTS/epic.md || echo "❌ Epic not found. Run: /pm:prd-parse $ARGUMENTS"
+test -f .opencode/epics/$ARGUMENTS/epic.md || echo "❌ Epic not found. Run: /pm:prd-parse $ARGUMENTS"
 
 # Check for existing tasks
-if ls .claude/epics/$ARGUMENTS/[0-9]*.md 2>/dev/null | grep -q .; then
+if ls .opencode/epics/$ARGUMENTS/[0-9]*.md 2>/dev/null | grep -q .; then
   echo "⚠️ Tasks already exist. This will create duplicates."
   echo "Delete existing tasks or use /pm:epic-sync instead."
   exit 1
 fi
 
 # Check if already synced
-if grep -q "github:" .claude/epics/$ARGUMENTS/epic.md; then
-  echo "⚠️ Epic already synced to GitHub."
+if grep -q "gitlab:" .opencode/epics/$ARGUMENTS/epic.md; then
+  echo "⚠️ Epic already synced to GitLab."
   echo "Use /pm:epic-sync to update."
   exit 1
 fi
@@ -55,7 +55,7 @@ Running: /pm:epic-sync $ARGUMENTS
 ```
 
 This will:
-- Create epic issue on GitHub
+- Create epic issue on GitLab
 - Create sub-issues (using parallel agents if appropriate)
 - Rename task files to issue IDs
 - Create worktree
@@ -68,7 +68,7 @@ This will:
 Step 1: Decomposition ✓
   - Tasks created: {count}
   
-Step 2: GitHub Sync ✓
+Step 2: GitLab Sync ✓
   - Epic: #{number}
   - Sub-issues created: {count}
   - Worktree: ../epic-$ARGUMENTS
@@ -86,4 +86,4 @@ This is simply a convenience wrapper that runs:
 
 Both commands handle their own error checking, parallel execution, and validation. This command just orchestrates them in sequence.
 
-Use this when you're confident the epic is ready and want to go from epic to GitHub issues in one step.
+Use this when you're confident the epic is ready and want to go from epic to GitLab issues in one step.

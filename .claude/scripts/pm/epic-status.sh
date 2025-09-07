@@ -11,20 +11,20 @@ if [ -z "$epic_name" ]; then
   echo "Usage: /pm:epic-status <epic-name>"
   echo ""
   echo "Available epics:"
-  for dir in .claude/epics/*/; do
+  for dir in .opencode/epics/*/; do
     [ -d "$dir" ] && echo "  • $(basename "$dir")"
   done
   exit 1
 else
   # Show status for specific epic
-  epic_dir=".claude/epics/$epic_name"
+  epic_dir=".opencode/epics/$epic_name"
   epic_file="$epic_dir/epic.md"
 
   if [ ! -f "$epic_file" ]; then
     echo "❌ Epic not found: $epic_name"
     echo ""
     echo "Available epics:"
-    for dir in .claude/epics/*/; do
+    for dir in .opencode/epics/*/; do
       [ -d "$dir" ] && echo "  • $(basename "$dir")"
     done
     exit 1
@@ -37,7 +37,7 @@ else
   # Extract metadata
   status=$(grep "^status:" "$epic_file" | head -1 | sed 's/^status: *//')
   progress=$(grep "^progress:" "$epic_file" | head -1 | sed 's/^progress: *//')
-  github=$(grep "^github:" "$epic_file" | head -1 | sed 's/^github: *//')
+  gitlab=$(grep "^gitlab:" "$epic_file" | head -1 | sed 's/^gitlab: *//')
 
   # Count tasks
   total=0
@@ -84,7 +84,7 @@ else
   echo "  ⏸️ Blocked: $blocked"
 
   [ -n "$github" ] && echo ""
-  [ -n "$github" ] && echo "🔗 GitHub: $github"
+  [ -n "$github" ] && echo "🔗 GitLab: $github"
 fi
 
 exit 0

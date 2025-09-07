@@ -19,7 +19,7 @@ Merge completed epic from worktree back to main branch.
    ```
 
 2. **Check for active agents:**
-   Read `.claude/epics/$ARGUMENTS/execution-status.md`
+   Read `.opencode/epics/$ARGUMENTS/execution-status.md`
    If active agents exist: "⚠️ Active agents detected. Stop them first with: /pm:epic-stop $ARGUMENTS"
 
 ## Instructions
@@ -58,7 +58,7 @@ fi
 
 Get current datetime: `date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
-Update `.claude/epics/$ARGUMENTS/epic.md`:
+Update `.opencode/epics/$ARGUMENTS/epic.md`:
 - Set status to "completed"
 - Update completion date
 - Add final summary
@@ -78,11 +78,11 @@ echo "Merging epic/$ARGUMENTS to main..."
 git merge epic/$ARGUMENTS --no-ff -m "Merge epic: $ARGUMENTS
 
 Completed features:
-$(cd .claude/epics/$ARGUMENTS && ls *.md | grep -E '^[0-9]+' | while read f; do
+$(cd .opencode/epics/$ARGUMENTS && ls *.md | grep -E '^[0-9]+' | while read f; do
   echo "- $(grep '^name:' $f | cut -d: -f2)"
 done)
 
-Closes epic #$(grep 'github:' .claude/epics/$ARGUMENTS/epic.md | grep -oE '#[0-9]+')"
+Closes epic #$(grep 'gitlab:' .opencode/epics/$ARGUMENTS/epic.md | grep -oE '#[0-9]+')"
 ```
 
 ### 5. Handle Merge Conflicts
@@ -131,26 +131,26 @@ git branch -d epic/$ARGUMENTS
 git push origin --delete epic/$ARGUMENTS 2>/dev/null || true
 
 # Archive epic locally
-mkdir -p .claude/epics/archived/
-mv .claude/epics/$ARGUMENTS .claude/epics/archived/
-echo "✅ Epic archived: .claude/epics/archived/$ARGUMENTS"
+mkdir -p .opencode/epics/archived/
+mv .opencode/epics/$ARGUMENTS .opencode/epics/archived/
+echo "✅ Epic archived: .opencode/epics/archived/$ARGUMENTS"
 ```
 
-### 7. Update GitHub Issues
+### 7. Update GitLab Issues
 
 Close related issues:
 ```bash
 # Get issue numbers from epic
-epic_issue=$(grep 'github:' .claude/epics/archived/$ARGUMENTS/epic.md | grep -oE '[0-9]+$')
+epic_issue=$(grep 'gitlab:' .opencode/epics/archived/$ARGUMENTS/epic.md | grep -oE '[0-9]+$')
 
 # Close epic issue
-gh issue close $epic_issue -c "Epic completed and merged to main"
+glab issue close $epic_issue -c "Epic completed and merged to main"
 
 # Close task issues
-for task_file in .claude/epics/archived/$ARGUMENTS/[0-9]*.md; do
-  issue_num=$(grep 'github:' $task_file | grep -oE '[0-9]+$')
+for task_file in .opencode/epics/archived/$ARGUMENTS/[0-9]*.md; do
+  issue_num=$(grep 'gitlab:' $task_file | grep -oE '[0-9]+$')
   if [ ! -z "$issue_num" ]; then
-    gh issue close $issue_num -c "Completed in epic merge"
+    glab issue close $issue_num -c "Completed in epic merge"
   fi
 done
 ```
@@ -170,7 +170,7 @@ Cleanup completed:
   ✓ Worktree removed
   ✓ Branch deleted
   ✓ Epic archived
-  ✓ GitHub issues closed
+  ✓ GitLab issues closed
   
 Next steps:
   - Deploy changes if needed
@@ -208,4 +208,4 @@ Or abort and try later:
 - Run tests before merging when possible
 - Use --no-ff to preserve epic history
 - Archive epic data instead of deleting
-- Close GitHub issues to maintain sync
+- Close GitLab issues to maintain sync

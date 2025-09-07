@@ -4,7 +4,7 @@ allowed-tools: Bash, Read, Write, LS, Task
 
 # Issue Start
 
-Begin work on a GitHub issue with parallel agents based on work stream analysis.
+Begin work on a GitLab issue with parallel agents based on work stream analysis.
 
 ## Usage
 ```
@@ -15,18 +15,18 @@ Begin work on a GitHub issue with parallel agents based on work stream analysis.
 
 1. **Get issue details:**
    ```bash
-   gh issue view $ARGUMENTS --json state,title,labels,body
+   glab issue view $ARGUMENTS --json state,title,labels,body
    ```
-   If it fails: "❌ Cannot access issue #$ARGUMENTS. Check number or run: gh auth login"
+   If it fails: "❌ Cannot access issue #$ARGUMENTS. Check number or run: glab auth login"
 
 2. **Find local task file:**
-   - First check if `.claude/epics/*/$ARGUMENTS.md` exists (new naming)
-   - If not found, search for file containing `github:.*issues/$ARGUMENTS` in frontmatter (old naming)
+   - First check if `.opencode/epics/*/$ARGUMENTS.md` exists (new naming)
+   - If not found, search for file containing `gitlab:.*issues/$ARGUMENTS` in frontmatter (old naming)
    - If not found: "❌ No local task for issue #$ARGUMENTS. This issue may have been created outside the PM system."
 
 3. **Check for analysis:**
    ```bash
-   test -f .claude/epics/*/$ARGUMENTS-analysis.md || echo "❌ No analysis found for issue #$ARGUMENTS
+   test -f .opencode/epics/*/$ARGUMENTS-analysis.md || echo "❌ No analysis found for issue #$ARGUMENTS
    
    Run: /pm:issue-analyze $ARGUMENTS first
    Or: /pm:issue-start $ARGUMENTS --analyze to do both"
@@ -51,7 +51,7 @@ fi
 
 ### 2. Read Analysis
 
-Read `.claude/epics/{epic_name}/$ARGUMENTS-analysis.md`:
+Read `.opencode/epics/{epic_name}/$ARGUMENTS-analysis.md`:
 - Parse parallel streams
 - Identify which can start immediately
 - Note dependencies between streams
@@ -62,7 +62,7 @@ Get current datetime: `date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
 Create workspace structure:
 ```bash
-mkdir -p .claude/epics/{epic_name}/updates/$ARGUMENTS
+mkdir -p .opencode/epics/{epic_name}/updates/$ARGUMENTS
 ```
 
 Update task file frontmatter `updated` field with current datetime.
@@ -71,7 +71,7 @@ Update task file frontmatter `updated` field with current datetime.
 
 For each stream that can start immediately:
 
-Create `.claude/epics/{epic_name}/updates/$ARGUMENTS/stream-{X}.md`:
+Create `.opencode/epics/{epic_name}/updates/$ARGUMENTS/stream-{X}.md`:
 ```markdown
 ---
 issue: $ARGUMENTS
@@ -109,10 +109,10 @@ Task:
     - Work to complete: {stream_description}
     
     Requirements:
-    1. Read full task from: .claude/epics/{epic_name}/{task_file}
+    1. Read full task from: .opencode/epics/{epic_name}/{task_file}
     2. Work ONLY in your assigned files
     3. Commit frequently with format: "Issue #$ARGUMENTS: {specific change}"
-    4. Update progress in: .claude/epics/{epic_name}/updates/$ARGUMENTS/stream-{X}.md
+    4. Update progress in: .opencode/epics/{epic_name}/updates/$ARGUMENTS/stream-{X}.md
     5. Follow coordination rules in /rules/agent-coordination.md
     
     If you need to modify files outside your scope:
@@ -123,11 +123,11 @@ Task:
     Complete your stream's work and mark as completed when done.
 ```
 
-### 5. GitHub Assignment
+### 5. GitLab Assignment
 
 ```bash
 # Assign to self and mark in-progress
-gh issue edit $ARGUMENTS --add-assignee @me --add-label "in-progress"
+glab issue edit $ARGUMENTS --add-assignee @me --add-label "in-progress"
 ```
 
 ### 6. Output
@@ -144,7 +144,7 @@ Launching {count} parallel agents:
   Stream C: {name} - Waiting (depends on A)
 
 Progress tracking:
-  .claude/epics/{epic_name}/updates/$ARGUMENTS/
+  .opencode/epics/{epic_name}/updates/$ARGUMENTS/
 
 Monitor with: /pm:epic-status {epic_name}
 Sync updates: /pm:issue-sync $ARGUMENTS
@@ -160,4 +160,4 @@ If any step fails, report clearly:
 ## Important Notes
 
 Follow `/rules/datetime.md` for timestamps.
-Keep it simple - trust that GitHub and file system work.
+Keep it simple - trust that GitLab and file system work.
