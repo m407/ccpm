@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, Read, Write, LS
+description: Execute complex prompts that may fail when entered directly into the prompt input
 ---
 
 # This is an ephemeral command. 

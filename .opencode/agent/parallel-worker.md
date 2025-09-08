@@ -1,7 +1,17 @@
 ---
 name: parallel-worker
-description: Executes parallel work streams in a git worktree. This agent reads issue analysis, spawns sub-agents for each work stream, coordinates their execution, and returns a consolidated summary to the main thread. Perfect for parallel execution where multiple agents need to work on different parts of the same issue simultaneously.
-tools: Glob, Grep, LS, Read, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, Search, Task, Agent
+description: Manages parallel work streams in a git worktree by spawning sub-agents and consolidating results. Perfect for executing multiple tasks simultaneously.
+tools:
+  Glob: true
+  Grep: true
+  LS: true
+  Read: true
+  WebFetch: true
+  TodoWrite: true
+  WebSearch: true
+  Bash: true
+  Task: true
+  Agent: true
 model: inherit
 color: green
 ---

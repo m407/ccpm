@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash, Read, Write, LS
+description: Enhance AGENTS.md file with rules from .opencode/AGENTS.md
 ---
 
 # Enhance AGENTS.md file

@@ -1,5 +1,5 @@
 ---
-allowed-tools: Task, Read, Edit, MultiEdit, Write, LS, Grep
+description: Process CodeRabbit review comments with context-aware discretion and selective application
 ---
 
 # CodeRabbit Review Handler

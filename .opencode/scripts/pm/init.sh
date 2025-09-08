@@ -140,9 +140,9 @@ glab --version | head -1
 echo "  Auth: $(glab auth status 2>&1 | grep -o 'Logged in to [^ ]*' || echo 'Not authenticated')"
 echo ""
 echo "🎯 Next Steps:"
-echo "  1. Create your first PRD: /pm:prd-new <feature-name>"
-echo "  2. View help: /pm:help"
-echo "  3. Check status: /pm:status"
+echo "  1. Create your first PRD: /pm-prd-new <feature-name>"
+echo "  2. View help: /pm-help"
+echo "  3. Check status: /pm-status"
 echo ""
 echo "📚 Documentation: README.md"
 

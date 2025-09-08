@@ -3,8 +3,8 @@ echo "Getting epics..."
 echo ""
 echo ""
 
-[ ! -d ".opencode/epics" ] && echo "📁 No epics directory found. Create your first epic with: /pm:prd-parse <feature-name>" && exit 0
-[ -z "$(ls -d .opencode/epics/*/ 2>/dev/null)" ] && echo "📁 No epics found. Create your first epic with: /pm:prd-parse <feature-name>" && exit 0
+[ ! -d ".opencode/epics" ] && echo "📁 No epics directory found. Create your first epic with: /pm-prd-parse <feature-name>" && exit 0
+[ -z "$(ls -d .opencode/epics/*/ 2>/dev/null)" ] && echo "📁 No epics found. Create your first epic with: /pm-prd-parse <feature-name>" && exit 0
 
 echo "📚 Project Epics"
 echo "================"

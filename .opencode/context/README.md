@@ -31,11 +31,11 @@ When fully initialized, this directory contains:
 
 ## Context Commands
 
-Use these commands to manage your project context:
+Use these commands to manage your project context-
 
 ### Initialize Context
 ```bash
-/context:create
+/context-create
 ```
 Analyzes your project and creates initial context documentation. Use this when:
 - Starting a new project
@@ -44,7 +44,7 @@ Analyzes your project and creates initial context documentation. Use this when:
 
 ### Load Context
 ```bash
-/context:prime
+/context-prime
 ```
 Loads all context information for a new agent session. Use this when:
 - Starting a new development session
@@ -53,7 +53,7 @@ Loads all context information for a new agent session. Use this when:
 
 ### Update Context
 ```bash
-/context:update
+/context-update
 ```
 Updates context documentation to reflect current project state. Use this:
 - At the end of development sessions
@@ -63,10 +63,10 @@ Updates context documentation to reflect current project state. Use this:
 
 ## Context Workflow
 
-1. **Project Start**: Run `/context:create` to establish baseline documentation
-2. **Session Start**: Run `/context:prime` to load current context
+1. **Project Start**: Run `/context-create` to establish baseline documentation
+2. **Session Start**: Run `/context-prime` to load current context
 3. **Development**: Work on your project with full context awareness
-4. **Session End**: Run `/context:update` to capture changes and progress
+4. **Session End**: Run `/context-update` to capture changes and progress
 
 ## Benefits
 
@@ -92,4 +92,4 @@ The context system integrates with:
 - **Documentation**: Complements existing project documentation
 - **Team Collaboration**: Provides shared understanding across contributors
 
-Start with `/context:create` to initialize your project's knowledge base!
+Start with `/context-create` to initialize your project's knowledge base!
