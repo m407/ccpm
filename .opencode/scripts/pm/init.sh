@@ -59,7 +59,7 @@ echo "📁 Creating directory structure..."
 mkdir -p .opencode/prds
 mkdir -p .opencode/epics
 mkdir -p .opencode/rules
-mkdir -p .opencode/agents
+mkdir -p .opencode/agent
 mkdir -p .opencode/scripts/pm
 echo "  ✅ Directories created"
 

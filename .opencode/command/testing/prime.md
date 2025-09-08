@@ -193,7 +193,7 @@ Prepare agent context based on framework:
 - Last Run: Never
 
 ## Execution Rules
-1. Always use the test-runner agent from `.opencode/agents/test-runner.md`
+1. Always use the test-runner agent from `.opencode/agent/test-runner.md`
 2. Run with maximum verbosity for debugging
 3. No mock services - use real implementations
 4. Execute tests sequentially - no parallel execution

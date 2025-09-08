@@ -41,7 +41,7 @@ Based on testing-config.md and target:
 
 ### 2. Execute Tests
 
-Use the test-runner agent from `.opencode/agents/test-runner.md`:
+Use the test-runner agent from `.opencode/agent/test-runner.md`:
 
 ```markdown
 Execute tests for: $ARGUMENTS (or "all" if empty)
